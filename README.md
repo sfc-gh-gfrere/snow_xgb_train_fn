@@ -2,7 +2,7 @@
 
 ## What Changed
 
-`XGBEstimator` now accepts `train_fn_per_worker` — a custom training function that runs on each distributed worker. This follows the same contract as [Ray's XGBoostTrainer `train_loop_per_worker`](https://docs.ray.io/en/latest/train/api/doc/ray.train.xgboost.XGBoostTrainer.html), giving you full access to OSS `xgb.train()` while the distributor still handles multi-node orchestration, data sharding, and fault tolerance.
+`XGBEstimator` now accepts `train_fn_per_worker` — a custom training function that runs on each distributed worker. This follows the same contract as [Ray's XGBoostTrainer `train_loop_per_worker`](https://docs.ray.io/en/latest/train/api/doc/ray.train.xgboost.XGBoostTrainer.html), giving you full access to OSS `xgb.train()` while the distributor still handles multi-node orchestration and data sharding.
 
 Previously, the only way to configure training was through the `params` dict and top-level `XGBEstimator` arguments. Anything that required `DMatrix`-level control (sample weights, base margin, feature weights, group structure) or `xgb.train()`-level control (custom objectives, custom eval metrics) was not available in distributed mode. Note: callbacks were already supported as a top-level `XGBEstimator` argument.
 
